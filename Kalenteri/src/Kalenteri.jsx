@@ -1,14 +1,37 @@
 import React, { useState } from 'react';
-import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameMonth, isSameDay } from 'date-fns';
+// 1. Tuodaan subMonths ja addMonths kuukauden vaihtamista varten
+import { 
+  format, 
+  startOfMonth, 
+  endOfMonth, 
+  startOfWeek, 
+  endOfWeek, 
+  addDays, 
+  isSameMonth, 
+  isSameDay, 
+  subMonths, 
+  addMonths 
+} from 'date-fns';
+// Tuodaan suomen kielen lokalisointi (valinnainen, jos haluat kuukaudet suomeksi)
+import { fi } from 'date-fns/locale'; 
+
 
 export default function OmaKalenteri() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Haetaan kuukauden ensimmäisen viikon maanantai ja viimeisen viikon sunnuntai
+  // Logiikka kuukauden vaihtamiseen
+  const prevMonth = () => {
+    setCurrentMonth(subMonths(currentMonth, 1));
+  };
+
+  const nextMonth = () => {
+    setCurrentMonth(addMonths(currentMonth, 1));
+  };
+
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
-  const startDate = startOfWeek(monthStart, { weekStartsOn: 1 }); // 1 = Maanantai
+  const startDate = startOfWeek(monthStart, { weekStartsOn: 1 });
   const endDate = endOfWeek(monthEnd, { weekStartsOn: 1 });
 
   const renderDays = () => {
@@ -21,7 +44,7 @@ export default function OmaKalenteri() {
         const cloneDay = day;
         days.push(
           <div
-            key={day}
+            key={day.toISOString()}
             className={`day-cell ${!isSameMonth(day, monthStart) ? 'disabled' : ''} ${isSameDay(day, selectedDate) ? 'selected' : ''}`}
             onClick={() => setSelectedDate(cloneDay)}
           >
@@ -30,7 +53,7 @@ export default function OmaKalenteri() {
         );
         day = addDays(day, 1);
       }
-      rows.push(<div className="week-row" key={day}>{days}</div>);
+      rows.push(<div className="week-row" key={day.toISOString()}>{days}</div>);
       days = [];
     }
     return <div className="calendar-body">{rows}</div>;
@@ -38,7 +61,16 @@ export default function OmaKalenteri() {
 
   return (
     <div className="calendar-container">
-      <h2>{format(currentMonth, 'LLLL yyyy')}</h2>
+      {/* 2. Kalenterin yläosa ja painikkeet */}
+      <div className="calendar-header">
+        <button onClick={prevMonth} className="nav-btn">&lt;</button>
+        <h2>
+          {/* format-funktion kolmas argumentti muuttaa kielen suomeksi */}
+          {format(currentMonth, 'LLLL yyyy', { locale: fi })}
+        </h2>
+        <button onClick={nextMonth} className="nav-btn">&gt;</button>
+      </div>
+      
       {renderDays()}
     </div>
   );
