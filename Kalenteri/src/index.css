@@ -97,47 +97,242 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
-/* Kalenterin päälaatikko */
-.calendar-container {
+
+/* Pääsäiliö, joka pitää sovelluksen keskellä */
+.app-container {
   max-width: 1000px;
-  margin: 20px auto;
-  font-family: sans-serif;
-  text-align: center;
+  margin: 30px auto;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Yksittäinen viikkorivi toimii Flexbox-rivinä */
+/* Yläreunan navigointipalkki */
+.main-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+.main-nav button {
+  flex: 1;
+  background: #f3f4f6;
+  color: #1f2937;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.main-nav button:hover {
+  background: #e5e7eb;
+}
+
+.main-nav button.active {
+  background: #007bff;
+  color: white;
+}
+
+/* Kalenterinäkymä*/
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.calendar-header h2 {
+  margin: 0;
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  color: #111827;
+}
+
+.nav-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background: #0056b3;
+}
+
 .week-row {
   display: flex;
   width: 100%;
 }
 
-/* Yksittäinen päiväruutu */
 .day-cell {
+  position: relative;
   flex: 1;
-  aspect-ratio: 1; /* Tekee ruudusta täydellisen neliön */
+  aspect-ratio: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  border: 1px solid #eee;
+  border: 1px solid #e5e7eb;
   margin: 1px;
+  cursor: pointer;
   border-radius: 4px;
+  background: #fff;
 }
 
-/* Korostus, kun hiiri on päivän päällä */
 .day-cell:hover {
-  background-color: #f0f0f0;
+  background-color: #f9fafb;
 }
 
-/* Muiden kuukausien päivät (haaleampi väri) */
 .day-cell.disabled {
-  color: #ccc;
-  background-color: #fafafa;
+  color: #9ca3af;
+  background-color: #f9fafb;
 }
 
-/* Valittu päivämäärä */
 .day-cell.selected {
-  background-color: #007bff;
-  color: white;
+  background-color: #ebf5ff;
+  border: 2px solid #007bff;
   font-weight: bold;
+}
+
+.day-number {
+  font-size: 1rem;
+}
+
+/* Tapahtumapisteet kalenteriruudun alareunassa */
+.day-events-dots {
+  display: flex;
+  gap: 3px;
+  margin-top: 4px;
+  height: 6px;
+}
+
+.event-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.event-dot.työ { background: #ef4444; }
+.event-dot.vapaa-aika { background: #10b981; }
+
+
+/* --- 2. LISTANÄKYMÄN TYYLIT --- */
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.event-item {
+  border-left: 5px solid #9ca3af;
+  background: #f9fafb;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.event-item.työ { border-left-color: #ef4444; }
+.event-item.vapaa-aika { border-left-color: #10b981; }
+
+.event-item h3 {
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: #e5e7eb;
+  margin-left: 10px;
+  text-transform: uppercase;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 0.85rem;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+
+/* Lomakenäkymä */
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus, 
+.form-group select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.save-btn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.save-btn:hover {
+  background: #059669;
+}
+
+.error-msg {
+  color: #dc2626;
+  background: #fee2e2;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }

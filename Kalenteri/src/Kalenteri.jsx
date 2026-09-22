@@ -78,9 +78,8 @@ export default function KalenteriSovellus() {
     setCurrentView('lista'); 
   };
 
-  // --- NÄKYMÄT ---
 
-  // 1. KALENTERINÄKYMÄ
+  // KALENTERINÄKYMÄ
   const renderCalendarView = () => {
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
@@ -131,7 +130,7 @@ export default function KalenteriSovellus() {
     );
   };
 
-  // 2. LISTANÄKYMÄ
+  // Listanäkymä
   const renderListView = () => {
     return (
       <div className="list-view">
@@ -159,7 +158,7 @@ export default function KalenteriSovellus() {
     );
   };
 
-  // 3. LOMAKENÄKYMÄ
+  // Lomakenäkymä
   const renderFormView = () => {
     return (
       <div className="form-view">
