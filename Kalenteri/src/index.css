@@ -1,16 +1,4 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #ac9999;
-  --border: #e5e4e7;
-  --code-bg: #f7eb9e;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
@@ -108,4 +96,48 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+/* Kalenterin päälaatikko */
+.calendar-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+/* Yksittäinen viikkorivi toimii Flexbox-rivinä */
+.week-row {
+  display: flex;
+  width: 100%;
+}
+
+/* Yksittäinen päiväruutu */
+.day-cell {
+  flex: 1;
+  aspect-ratio: 1; /* Tekee ruudusta täydellisen neliön */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #eee;
+  margin: 1px;
+  border-radius: 4px;
+}
+
+/* Korostus, kun hiiri on päivän päällä */
+.day-cell:hover {
+  background-color: #f0f0f0;
+}
+
+/* Muiden kuukausien päivät (haaleampi väri) */
+.day-cell.disabled {
+  color: #ccc;
+  background-color: #fafafa;
+}
+
+/* Valittu päivämäärä */
+.day-cell.selected {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
 }
