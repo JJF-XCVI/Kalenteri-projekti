@@ -13,7 +13,6 @@ import {
 } from 'date-fns';
 import { fi } from 'date-fns/locale'; 
 
-
 export default function KalenteriSovellus() {
   // Aktiivinen näkymä: 'kalenteri', 'lista' tai 'lomake'
   const [currentView, setCurrentView] = useState('kalenteri');
@@ -22,7 +21,7 @@ export default function KalenteriSovellus() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Testidataa (tapahtumat), joka myöhemmin haetaan backendistä
+  // Testidataa (tapahtumat)
   const [events, setEvents] = useState([
     {
       id: "1",
@@ -55,14 +54,13 @@ export default function KalenteriSovellus() {
   const handleCreateEvent = (e) => {
     e.preventDefault();
     
-    // Suunnitelman mukainen tarkistus: ettei nimeä jätetä tyhjäksi
     if (!formTitle.trim()) {
       setErrorMessage('Tapahtuman nimi ei saa olla tyhjä!');
       return;
     }
 
     const newEvent = {
-      id: Date.now().toString(), // Väliaikainen id ennen backend-vaihetta
+      id: Date.now().toString(),
       title: formTitle,
       description: formDesc,
       date: formDate,
@@ -71,16 +69,18 @@ export default function KalenteriSovellus() {
 
     setEvents([...events, newEvent]);
     
-    // Tyhjennetään lomake ja palataan listaan
     setFormTitle('');
     setFormDesc('');
     setErrorMessage('');
     setCurrentView('lista'); 
   };
 
-
   // KALENTERINÄKYMÄ
   const renderCalendarView = () => {
+    // Etsitään klikatun päivän tapahtumat
+    const selectedDateStr = format(selectedDate, 'yyyy-MM-dd');
+    const selectedDayEvents = events.filter(e => e.date === selectedDateStr);
+
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart, { weekStartsOn: 1 });
@@ -95,7 +95,6 @@ export default function KalenteriSovellus() {
         const cloneDay = day;
         const formattedDayStr = format(day, 'yyyy-MM-dd');
         
-        // Etsitään päivälle kuuluvat tapahtumat kalenteriruutuun
         const dayEvents = events.filter(e => e.date === formattedDayStr);
 
         days.push(
@@ -126,6 +125,21 @@ export default function KalenteriSovellus() {
           <button onClick={nextMonth} className="nav-btn">&gt;</button>
         </div>
         <div className="calendar-body">{rows}</div>
+
+        {/* Näytetään tapahtumat vain, jos klikatulla päivällä on niitä */}
+        {selectedDayEvents.length > 0 && (
+          <div className="selected-day-events" style={{ marginTop: '20px', padding: '15px', border: '1px solid #ccc', borderRadius: '8px' }}>
+            <h3>Päivän {format(selectedDate, 'd.M.yyyy')} tapahtumat:</h3>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              {selectedDayEvents.map(event => (
+                <li key={event.id} style={{ marginBottom: '10px', paddingBottom: '10px', borderBottom: '1px dashed #eee' }}>
+                  <h4>{event.title} <span className={`badge ${event.category}`} style={{ fontSize: '0.8rem', padding: '2px 6px', borderRadius: '4px' }}>{event.category}</span></h4>
+                  <p>{event.description}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     );
   };
@@ -208,6 +222,7 @@ export default function KalenteriSovellus() {
     );
   };
 
+  // TÄMÄ PÄÄ-RETURN PUUTTUI KOODISTASI kokonaan:
   return (
     <div className="app-container">
       {/* Päänagivointi näkymien välillä */}
