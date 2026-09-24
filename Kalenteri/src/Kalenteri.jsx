@@ -13,6 +13,9 @@ import {
 } from 'date-fns';
 import { fi } from 'date-fns/locale'; 
 
+// 1. Tuodaan aloitusdata JSON-tiedostosta
+import aloitusTapahtumat from './events.json'; 
+
 export default function KalenteriSovellus() {
   // Aktiivinen näkymä: 'kalenteri', 'lista' tai 'lomake'
   const [currentView, setCurrentView] = useState('kalenteri');
@@ -21,23 +24,8 @@ export default function KalenteriSovellus() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Testidataa (tapahtumat)
-  const [events, setEvents] = useState([
-    {
-      id: "1",
-      title: "Koodausprojekti palautus",
-      description: "Palauta valmis Full-stack sovellus",
-      date: "2026-09-25",
-      category: "työ"
-    },
-    {
-      id: "2",
-      title: "Kaverin synttärit",
-      description: "Muista ostaa lahja matkalla",
-      date: "2026-09-28",
-      category: "vapaa-aika"
-    }
-  ]);
+  // 2. KORJATTU: Palautettu tapahtumatila, joka käyttää JSON-dataa pohjana
+  const [events, setEvents] = useState(aloitusTapahtumat);
 
   // Lomakkeen tilat uutta tapahtumaa varten
   const [formTitle, setFormTitle] = useState('');
@@ -222,7 +210,6 @@ export default function KalenteriSovellus() {
     );
   };
 
-  // TÄMÄ PÄÄ-RETURN PUUTTUI KOODISTASI kokonaan:
   return (
     <div className="app-container">
       {/* Päänagivointi näkymien välillä */}
