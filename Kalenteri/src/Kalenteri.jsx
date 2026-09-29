@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // ← LISÄTTY useEffect tässä
 import { 
   format, 
   startOfMonth, 
@@ -13,8 +13,8 @@ import {
 } from 'date-fns';
 import { fi } from 'date-fns/locale'; 
 
-//Tuodaan aloitusdata JSON-tiedostosta
-import aloitusTapahtumat from './events.json'; 
+// Backendin osoite muuttujassa, niin koodia on helpompi lukea
+const API_URL = 'http://localhost:3000/api/events';
 
 export default function KalenteriSovellus() {
   // Aktiivinen näkymä: 'kalenteri', 'lista' tai 'lomake'
@@ -24,8 +24,8 @@ export default function KalenteriSovellus() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Palautettu tapahtumatila, joka käyttää JSON-dataa pohjana
-  const [events, setEvents] = useState(aloitusTapahtumat);
+  // Alustetaan tapahtumat tyhjällä taulukolla, tiedot haetaan backendistä
+  const [events, setEvents] = useState([]);
 
   // Lomakkeen tilat uutta tapahtumaa varten
   const [formTitle, setFormTitle] = useState('');
@@ -34,11 +34,19 @@ export default function KalenteriSovellus() {
   const [formCategory, setFormCategory] = useState('työ');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // 1. HAETAAN TAPAHTUMAT BACKENDISTÄ (GET)
+  useEffect(() => {
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => setEvents(data))
+      .catch(err => console.error("Virhe haettaessa tapahtumia:", err));
+  }, []);
+
   // Kuukauden vaihtofunktiot
   const prevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));
   const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1));
 
-  // Lomakkeen lähetyksen käsittely (Uuden tapahtuman luonti)
+  // Lomakkeen lähetyksen käsittely (Uuden tapahtuman luonti - POST)
   const handleCreateEvent = (e) => {
     e.preventDefault();
     
@@ -48,24 +56,47 @@ export default function KalenteriSovellus() {
     }
 
     const newEvent = {
-      id: Date.now().toString(),
       title: formTitle,
       description: formDesc,
       date: formDate,
       category: formCategory
     };
 
-    setEvents([...events, newEvent]);
-    
-    setFormTitle('');
-    setFormDesc('');
-    setErrorMessage('');
-    setCurrentView('lista'); 
+    // 2. LÄHETETÄÄN UUSI TAPAHTUMA BACKENDIIN
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newEvent)
+    })
+    .then(res => res.json())
+    .then(savedEvent => {
+      // Päivitetään Reactin tila vasta, kun backend on tallentanut ja palauttanut olion id:n kanssa
+      setEvents([...events, savedEvent]);
+      
+      // Tyhjennetään lomake ja palataan listaan
+      setFormTitle('');
+      setFormDesc('');
+      setErrorMessage('');
+      setCurrentView('lista'); 
+    })
+    .catch(err => console.error("Virhe tallennettaessa:", err));
+  };
+
+  // Tapahtuman poistaminen (DELETE)
+  const handleDeleteEvent = (id) => {
+    // 3. POISTETAAN TAPAHTUMA BACKENDISTÄ
+    fetch(`${API_URL}/${id}`, {
+      method: 'DELETE'
+    })
+    .then(() => {
+      // Poistetaan tapahtuma myös Reactin tilasta, jotta sivu päivittyy
+      setEvents(events.filter(event => event.id !== id));
+    })
+    .catch(err => console.error("Virhe poistettaessa:", err));
   };
 
   // Kalenteri
   const renderCalendarView = () => {
-    // Etsitään klikatun päivän tapahtumat
     const selectedDateStr = format(selectedDate, 'yyyy-MM-dd');
     const selectedDayEvents = events.filter(e => e.date === selectedDateStr);
 
@@ -114,7 +145,6 @@ export default function KalenteriSovellus() {
         </div>
         <div className="calendar-body">{rows}</div>
 
-        {/* Näytetään tapahtumat vain, jos klikatulla päivällä on niitä */}
         {selectedDayEvents.length > 0 && (
           <div className="selected-day-events">
             <h3>Päivän {format(selectedDate, 'd.M.yyyy')} tapahtumat:</h3>
@@ -148,7 +178,8 @@ export default function KalenteriSovellus() {
                 <p>{event.description}</p>
                 <button 
                   className="delete-btn" 
-                  onClick={() => setEvents(events.filter(e => e.id !== event.id))}
+                  // Kutsutaan uutta poistofunktiota
+                  onClick={() => handleDeleteEvent(event.id)} 
                 >
                   Poista
                 </button>
@@ -212,14 +243,12 @@ export default function KalenteriSovellus() {
 
   return (
     <div className="app-container">
-      {/* Päänagivointi näkymien välillä */}
       <nav className="main-nav">
         <button className={currentView === 'kalenteri' ? 'active' : ''} onClick={() => setCurrentView('kalenteri')}>Kalenteri</button>
         <button className={currentView === 'lista' ? 'active' : ''} onClick={() => setCurrentView('lista')}>Lista-näkymä</button>
         <button className={currentView === 'lomake' ? 'active' : ''} onClick={() => setCurrentView('lomake')}>+ Lisää tapahtuma</button>
       </nav>
 
-      {/* Renderöidään valittu näkymä */}
       <main className="content-area">
         {currentView === 'kalenteri' && renderCalendarView()}
         {currentView === 'lista' && renderListView()}
