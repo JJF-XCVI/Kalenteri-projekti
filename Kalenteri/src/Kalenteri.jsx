@@ -4,7 +4,7 @@ import {
   startOfMonth, 
   endOfMonth, 
   startOfWeek, 
-  endOfWeek, 
+  endOfWeek,
   addDays, 
   isSameMonth, 
   isSameDay, 
@@ -24,7 +24,7 @@ export default function KalenteriSovellus() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // 2. KORJATTU: Palautettu tapahtumatila, joka käyttää JSON-dataa pohjana
+  // Palautettu tapahtumatila, joka käyttää JSON-dataa pohjana
   const [events, setEvents] = useState(aloitusTapahtumat);
 
   // Lomakkeen tilat uutta tapahtumaa varten
@@ -63,7 +63,7 @@ export default function KalenteriSovellus() {
     setCurrentView('lista'); 
   };
 
-  // KALENTERINÄKYMÄ
+  // Kalenteri
   const renderCalendarView = () => {
     // Etsitään klikatun päivän tapahtumat
     const selectedDateStr = format(selectedDate, 'yyyy-MM-dd');
@@ -132,7 +132,7 @@ export default function KalenteriSovellus() {
     );
   };
 
-  // Listanäkymä
+  // Lista
   const renderListView = () => {
     return (
       <div className="list-view">
