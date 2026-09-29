@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(58, 58, 58);
 }
 :root {
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -342,4 +342,8 @@ code {
 .selected-day-events {
    margin-top: 20px', padding: '15px', border: '1px solid #ccc;
    border-radius: 8px ;
+  }
+
+  li {
+    border: 1px solid black;
   }
