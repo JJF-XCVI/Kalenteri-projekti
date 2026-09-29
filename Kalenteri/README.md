@@ -54,7 +54,11 @@ Tapahtuman nimi tarkistetaan ennen tallentamista. Jos nimi puuttuu, käyttäjäl
 
 Lista-näkymässä tapahtumia voi myös poistaa **Poista**-painikkeella.
 
-### 8. Lopputulos
+### 8. Lisäykset että saan backendin ja frontendin toimimaan keskenään
+
+Lisätty Kalenteri.jsx:ssään GET POST DELETE ja
+
+### 9. Lopputulos
 
 Lopputuloksena syntyi Reactilla toteutettu kalenterisovellus, jossa käyttäjä voi:
 

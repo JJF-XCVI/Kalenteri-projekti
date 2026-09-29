@@ -62,7 +62,7 @@ export default function KalenteriSovellus() {
       category: formCategory
     };
 
-    // 2. LÄHETETÄÄN UUSI TAPAHTUMA BACKENDIIN
+    //LÄHETETÄÄN UUSI TAPAHTUMA BACKENDIIN
     fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -84,7 +84,7 @@ export default function KalenteriSovellus() {
 
   // Tapahtuman poistaminen (DELETE)
   const handleDeleteEvent = (id) => {
-    // 3. POISTETAAN TAPAHTUMA BACKENDISTÄ
+    // POISTETAAN TAPAHTUMA BACKENDISTÄ
     fetch(`${API_URL}/${id}`, {
       method: 'DELETE'
     })
