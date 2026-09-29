@@ -1,10 +1,11 @@
 Dokumentointi on puuttelista koska keskityin liikaa koodin kommentointiin ja unohdin alkaa dokumentoimaan samaan aikaan kun kirjoitan koodia.
 
-Kalenteri teon aloitin sillä että loin ensin ulkoisen vision ja event.jsonin mistä sitten saan kyseiset tapahtumat myöhemmin
+Kalenteri teon aloitin App.jsx-tiedostolla minkä tarkoitus on toimia sovelluksen pääsivuna, joka tuo ja näyttää siihen koodatun Kalenteri-komponentin selaimessa.
+sitten loin Kalenteri.jsx missä aloin toteuttamaan ulkoista visiota ja event.jsonin mistä sitten saan kyseiset tapahtumat myöhemmin eli loin kalenterin rakennetta myös css
 
 Backendin lisäsin jossain tässä aika alussa tässä backendissa luotin aikalailla AI:hin ihan vaan sen takia että mulla ei oo tästä paljoon mitää muistissa CORS API Reitit (CRUD)
 
-Ennen kuin loin mitään asensin npm install date-fns mikä on a moderni and modulaarinen JavaScript apuohjelmakirjasto päivämäärien muotoiluun, jäsentämiseen, vertailuun ja käsittelyyn.
+Ennen kuin loin mitään asensin npm install date-fns mikä on a moderni and modulaarinen JavaScript apuohjelmakirjasto päivämäärien muotoiluun, jäsentämiseen, vertailuun ja käsittelyyn se auttaa siis kalenterin rakennetta siinä että päivämäärät ovat oikein ja kalenterin numeroitten määrät.
 
 Vision jälkeen aloin luomaan kalenterin toimintoja missä ensimmäinen haaste tuli siitä että miten teen kalenterin missä voin vaihtaa kalenterin kuukausia alunperin oli siis jumissa yhdessä kuukaudessa. Toiminollisuus löytyy riveiltä 24-25 38-39 ja napit lyötyy 111-113
 
