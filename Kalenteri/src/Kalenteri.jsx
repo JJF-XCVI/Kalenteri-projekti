@@ -13,7 +13,7 @@ import {
 } from 'date-fns';
 import { fi } from 'date-fns/locale'; 
 
-// 1. Tuodaan aloitusdata JSON-tiedostosta
+//Tuodaan aloitusdata JSON-tiedostosta
 import aloitusTapahtumat from './events.json'; 
 
 export default function KalenteriSovellus() {

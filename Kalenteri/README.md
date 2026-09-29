@@ -1,14 +1,71 @@
-Dokumentointi on puuttelista koska keskityin liikaa koodin kommentointiin ja unohdin alkaa dokumentoimaan samaan aikaan kun kirjoitan koodia.
+## Projektin dokumentointi
 
-Kalenteri teon aloitin App.jsx-tiedostolla minkä tarkoitus on toimia sovelluksen pääsivuna, joka tuo ja näyttää siihen koodatun Kalenteri-komponentin selaimessa.
-sitten loin Kalenteri.jsx missä aloin toteuttamaan ulkoista visiota ja event.jsonin mistä sitten saan kyseiset tapahtumat myöhemmin eli loin kalenterin rakennetta myös css
+Dokumentointi jäi projektin aikana hieman puutteelliseksi, koska keskityin paljon koodin kommentointiin ja unohdin dokumentoida projektin etenemistä samalla kun kirjoitin koodia. Tässä käyn kuitenkin läpi projektin tärkeimmät vaiheet ja vastaan tulleet ongelmat.
 
-Backendin lisäsin jossain tässä aika alussa tässä backendissa luotin aikalailla AI:hin ihan vaan sen takia että mulla ei oo tästä paljoon mitää muistissa CORS API Reitit (CRUD)
+### 1. Projektin aloittaminen
 
-Ennen kuin loin mitään asensin npm install date-fns mikä on a moderni and modulaarinen JavaScript apuohjelmakirjasto päivämäärien muotoiluun, jäsentämiseen, vertailuun ja käsittelyyn se auttaa siis kalenterin rakennetta siinä että päivämäärät ovat oikein ja kalenterin numeroitten määrät.
+Aloitin kalenterisovelluksen tekemisen App.jsx-tiedostosta, jonka tarkoituksena on toimia sovelluksen pääsivuna ja tuoda Kalenteri-komponentti selaimeen.
 
-Vision jälkeen aloin luomaan kalenterin toimintoja missä ensimmäinen haaste tuli siitä että miten teen kalenterin missä voin vaihtaa kalenterin kuukausia alunperin oli siis jumissa yhdessä kuukaudessa. Toiminollisuus löytyy riveiltä 24-25 38-39 ja napit lyötyy 111-113
+Tämän jälkeen loin Kalenteri.jsx-tiedoston, jossa aloin rakentaa kalenterin rakennetta ja toiminnallisuuksia. Samalla loin events.json -tiedoston alustavia tapahtumia varten sekä CSS-tyylit kalenterin ulkoasua varten.
 
-Aloin luomaan lista- ja lomakenäkymää (listanäkyma riveillä 136–161 ja lomake 164–211), ja lisäsin events.json-tiedostoon kaksi testitapahtumaa. Tässä kohtaa rakensin myös navigaation ja näkymien renderöinnin, jotta pääsen liikkumaan niiden välillä. Yläreunan napit vaihtavat sovelluksen tilaa (currentView), ja <main>-alue renderöi ruudulle lennosta vain valitun näkymän funktion (kuten renderListView()) ilman sivun uudelleenlataust
+### 2. date-fns-kirjaston käyttöönotto
 
- Ongelmana tässä kohtaa se että päivät ei näyttäneet mitään kun niihin klikkattiin joten joudut aina tapahtumalistasta katsoa mitä siellä on. Riveillä 69-70 ja 117-133 ovat toiminnot mitkä näyttävät päivien tapahtumat jos niitä on.
+Ennen kalenterin toiminnallisuuksien tekemistä asensin date-fns-kirjaston:
+
+```bash
+npm install date-fns
+```
+
+Kirjastoa käytin päivämäärien käsittelyyn, kuten kuukausien, viikkojen ja päivien muodostamiseen sekä päivämäärien näyttämiseen oikeassa muodossa. Suomenkielistä näyttöä varten käytin myös date-fns-kirjaston suomenkielistä localea.
+
+### 3. Backendin lisääminen
+
+Projektin alkuvaiheessa lisäsin backendin, jossa toteutin CORS-asetukset, API-reitit ja CRUD-toiminnot tapahtumille.
+
+Backendin tekemisessä hyödynsin melko paljon tekoälyä, koska backend-kehityksestä ei ollut itselläni yhtä paljon aikaisempaa osaamista. Tekoäly auttoi erityisesti rakenteen ja toteutustavan kanssa.
+
+CRUD-toiminnot tarkoittavat tapahtumien luomista, hakemista, päivittämistä ja poistamista.
+
+### 4. Kalenterin perusrakenne ja kuukausien vaihtaminen
+
+Kun kalenterin perusrakenne oli valmis, aloin rakentaa toiminnallisuuksia. Ensimmäinen suurempi haaste oli kuukausien vaihtaminen. Aluksi kalenteri oli jumissa yhdessä kuukaudessa.
+
+Ratkaisin tämän tekemällä currentMonth-tilan ja toiminnot edelliseen ja seuraavaan kuukauteen siirtymistä varten. Kuukausien vaihtamiseen liittyvät toiminnot löytyvät riveiltä 24–25 ja 38–39. Kalenterin yläreunaan lisäsin myös painikkeet kuukausien vaihtamista varten.
+
+### 5. Lista- ja lomakenäkymät
+
+Seuraavaksi aloin rakentaa lista- ja lomakenäkymiä. Lista löytyy riveiltä 136–161 ja lomake riveiltä 164–211.
+
+Lisäsin events.json-tiedostoon kaksi testitapahtumaa, joiden avulla pystyin testaamaan kalenteria. Samalla rakensin navigoinnin eri näkymien välille.
+
+Navigointi perustuu currentView-tilaan, jonka avulla sovellus näyttää vain valitun näkymän. Näkymien vaihtaminen tapahtuu ilman sivun uudelleenlatausta.
+
+### 6. Päivän tapahtumien näyttäminen
+
+Seuraava ongelma oli, että kalenteripäivää pystyi klikkaamaan, mutta päivän tapahtumia ei vielä näytetty kalenterissa. Tämän vuoksi tapahtumia piti tarkistaa lista-näkymästä.
+
+Ratkaisin tämän tekemällä toiminnon, joka etsii valitun päivän tapahtumat. Riveillä 69–70 tarkistetaan valitun päivän päivämäärä ja etsitään sitä vastaavat tapahtumat. Riveillä 117–133 nämä tapahtumat näytetään käyttäjälle.
+
+### 7. Tapahtumien lisääminen ja poistaminen
+
+Lomakenäkymässä käyttäjä voi luoda uuden tapahtuman antamalla sille nimen, kuvauksen, päivämäärän ja kategorian.
+
+Tapahtuman nimi tarkistetaan ennen tallentamista. Jos nimi puuttuu, käyttäjälle näytetään virheilmoitus.
+
+Lista-näkymässä tapahtumia voi myös poistaa **Poista**-painikkeella.
+
+### 8. Lopputulos
+
+Lopputuloksena syntyi Reactilla toteutettu kalenterisovellus, jossa käyttäjä voi:
+
+selata eri kuukausia
+valita tietyn päivän
+nähdä valitun päivän tapahtumat
+tarkastella tapahtumia lista-näkymässä
+lisätä uusia tapahtumia
+poistaa tapahtumia
+määrittää tapahtumalle kategorian
+
+Projektin aikana opin erityisesti Reactin tilanhallintaa, komponenttien rakentamista, päivämäärien käsittelyä date-fns-kirjastolla sekä eri näkymien hallintaa.
+
+Backendin kautta sain myös kokemusta API-reiteistä, CRUD-toiminnoista ja CORS-asetuksista. Backendissä tarvitsin enemmän tekoälyn tukea, koska nämä asiat olivat itselleni vähemmän tuttuja kuin React-puoli.
