@@ -116,7 +116,7 @@ export default function KalenteriSovellus() {
 
         {/* Näytetään tapahtumat vain, jos klikatulla päivällä on niitä */}
         {selectedDayEvents.length > 0 && (
-          <div className="selected-day-events" style={{ marginTop: '20px', padding: '15px', border: '1px solid #ccc', borderRadius: '8px' }}>
+          <div className="selected-day-events">
             <h3>Päivän {format(selectedDate, 'd.M.yyyy')} tapahtumat:</h3>
             <ul style={{ listStyle: 'none', padding: 0 }}>
               {selectedDayEvents.map(event => (
