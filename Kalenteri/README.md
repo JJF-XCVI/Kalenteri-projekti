@@ -9,37 +9,75 @@ Sovellus on tarkoitettu auttamaan merkitsemään päiviä ja muistuttamaan tapah
 Kloonaa repositorio ja asenna tarvittavat riippuvuudet.
 https://github.com/JJF-XCVI/Kalenteri-projekti.git
 
+# Kalenterisovellus
+
+**Repositorion linkki:** LISÄÄ TÄHÄN GITHUB-REPOSITORION LINKKI
+
+## Mikä sovellus on ja kenelle
+
+Sovellus on tarkoitettu auttamaan merkitsemään päiviä ja muistuttamaan tapahtumista.
+
+## Asennus ja käynnistys
+
+Kloonaa repositorio ja siirry projektin kansioon.
+
 ### Frontend
 
+Siirry Kalenteri-kansioon:
+
 ```bash
-cd Kalenteri-projekti
 cd Kalenteri
+```
+
+Asenna tarvittavat paketit:
+
+```bash
 npm install
+```
+
+Käynnistä frontend:
+
+```bash
 npm run dev
 ```
 
 ### Backend
 
-Avaa toinen terminaali ja suorita:
+Avaa toinen terminaali ja siirry backend-kansioon:
 
 ```bash
-cd Kalenteri-projekti
 cd backend
+```
+
+Asenna backendin paketit:
+
+```bash
 npm install
+```
+
+Käynnistä backend:
+
+```bash
 node server.js
 ```
 
-Frontend ja backend käynnistetään siis omissa terminaaleissaan.
+Backendin tapahtumia voi tarkistaa selaimessa osoitteesta:
+
+http://localhost:3000/api/events
+
+### .env
+
+Projektissa ei tällä hetkellä käytetä `.env`-tiedostoa, joten sitä ei tarvitse luoda.
 
 ## Toteutetut ominaisuudet
 
-* kuukausien selaaminen
+* eri kuukausien selaaminen
 * tietyn päivän valitseminen
 * valitun päivän tapahtumien näyttäminen
-* lista-näkymä
-* tapahtumien lisääminen
+* tapahtumien tarkastelu lista-näkymässä
+* uusien tapahtumien lisääminen
 * tapahtumien poistaminen
-* tapahtumalle kategorian määrittäminen
+* tapahtuman kategorian määrittäminen
 * tapahtumien hakeminen backendistä
 * tapahtumien lisääminen backendin kautta
 * tapahtumien poistaminen backendin kautta
@@ -50,9 +88,9 @@ Dokumentointi jäi projektin aikana hieman puutteelliseksi, koska keskityin palj
 
 ### 1. Projektin aloittaminen
 
-Aloitin kalenterisovelluksen tekemisen App.jsx-tiedostosta, jonka tarkoituksena on toimia sovelluksen pääsivuna ja tuoda Kalenteri-komponentti selaimeen.
+Aloitin kalenterisovelluksen tekemisen App.jsx-tiedostosta, jonka tarkoituksena on toimia projektin pääsivuna ja tuoda Kalenteri-komponentti selaimeen.
 
-Tämän jälkeen loin Kalenteri.jsx-tiedoston, jossa aloin rakentaa kalenterin rakennetta ja toiminnallisuuksia. Samalla loin events.json-tiedoston alustavia tapahtumia varten sekä CSS-tyylit kalenterin ulkoasua varten.
+Tämän jälkeen loin Kalenteri.jsx-tiedoston, jossa aloin rakentaa kalenterin rakennetta ja toiminnallisuuksia. Samalla loin events.json -tiedoston alustavia tapahtumia varten sekä CSS-tyylit kalenterin ulkoasua varten.
 
 ### 2. date-fns-kirjaston käyttöönotto
 
@@ -100,11 +138,9 @@ Tapahtuman nimi tarkistetaan ennen tallentamista. Jos nimi puuttuu, käyttäjäl
 
 Lista-näkymässä tapahtumia voi myös poistaa **Poista**-painikkeella.
 
-### 8. Backendin ja frontendin yhdistäminen
+### 8. Lisäykset että saan backendin ja frontendin toimimaan keskenään
 
-Projektin loppuvaiheessa yhdistin backendin ja frontendin toimimaan yhdessä.
-
-Lisäsin Kalenteri.jsx-tiedostoon GET-, POST- ja DELETE-pyynnöt, joiden avulla frontend hakee tapahtumia backendistä sekä lisää ja poistaa tapahtumia.
+Lisätty Kalenteri.jsx:ään GET POST DELETE ja näillä sain backendin ja frontendin toimimaan keskenään.
 
 ### 9. Lopputulos
 
@@ -128,13 +164,11 @@ Projekti on tehty yksin.
 
 ## Tekoälyn käyttö tässä projektissa
 
-Käytin projektissa tekoälyä erityisesti backendin toteutuksessa, koska backend-kehitys oli itselleni vähemmän tuttua.
+Hyödynsin projektissa tekoälyä erityisesti backendin tekemisessä, koska backend-kehitys oli itselleni vähemmän tuttua. Tekoäly auttoi esimerkiksi backendin rakenteen, API-reittien, CRUD-toimintojen ja CORS-asetusten kanssa.
 
-Tekoäly auttoi esimerkiksi backendin rakenteen, API-reittien, CRUD-toimintojen ja CORS-asetusten kanssa. Lisäksi käytin tekoälyä joidenkin ongelmien selvittämiseen.
+Käytin tekoälyä myös ongelmien selvittämiseen ja koodin toiminnan ymmärtämiseen. Tarkistin ja muokkasin tekoälyn antamia ehdotuksia itse, ja vastasin lopullisesta toteutuksesta ja testauksesta.
 
-Tekoälyn antamia ratkaisuja tarkistin ja muokkasin itse projektin tarpeisiin. Vastasin itse lopullisesta toteutuksesta ja testasin sovelluksen toimivuuden.
-
-En syöttänyt tekoälylle salasanoja, API-avaimia tai muuta arkaluonteista tietoa.
+En syöttänyt tekoälylle salasanoja, API-avaimia tai muuta arkaluontoista tietoa.
 
 ## Kuvakaappaukset
 
@@ -148,16 +182,11 @@ En syöttänyt tekoälylle salasanoja, API-avaimia tai muuta arkaluonteista tiet
 
 ### Tapahtuman lisääminen
 
-![Tapahtuman lisääminen](./screenshots/lisaa-tapahtuma.png)
+![Tapahtuman lisääminen](./screenshots/lisays.png)
 
 ## Jatkokehitys
 
-Sovellukseen olisi voinut lisätä vielä tarkemman päivä- ja tuntinäkymän. Päivää klikkaamalla voisi avautua näkymä, jossa päivän tapahtumat näkyvät tarkemmin eri kellonaikoina.
+Aika paljon ois vielä voinut lisätä kaikkea. Sovellus tuntuu vähän liikaa pelkältä kalenterilta, eli siihen olisi voinut esimerkiksi tehdä tuntinäkymän, joka näkyisi kun päivää klikkaa. Silloin päivän tapahtumia voisi tarkastella tarkemmin.
 
-Lisäksi sovellukseen voisi myöhemmin lisätä esimerkiksi:
+Jatkossa sovellukseen voisi lisätä myös muita näkymiä ja toiminnallisuuksia, jos projektia jatkettaisiin pidemmälle.
 
-* tapahtumien muokkaamisen
-* tapahtumille kellonajan ja keston
-* toistuvat tapahtumat
-* tapahtumien suodattamisen kategorian mukaan
-* paremman mobiilinäkymän
