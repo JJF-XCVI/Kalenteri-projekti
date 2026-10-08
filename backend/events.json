@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": "1791280065837",
+    "title": "Path of Exile Uusi liiga",
+    "description": "Muista tehdä Cyclone Crit buildi",
+    "date": "2026-10-31",
+    "category": "työ"
+  },
+   {
+    "id": "1",
+    "title": "Koodausprojekti palautus",
+    "description": "Palauta valmis Full-stack sovellus",
+    "date": "2026-09-24",
+    "category": "työ"
+  },
+  {
+    "id": "2",
+    "title": "Kaverin synttärit",
+    "description": "Muista ostaa lahja matkalla",
+    "date": "2026-09-28",
+    "category": "vapaa-aika"
+  }
+]

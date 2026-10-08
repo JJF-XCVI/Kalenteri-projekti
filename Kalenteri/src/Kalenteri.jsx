@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'; // ← LISÄTTY useEffect tässä
+// AI:ta enimmäkseen käytetty virheitten korjauksiin ja backend jutut tässäkin koodissa tehty täysin AI:lla koska en tiedä siitä paljoa
+import React, { useState, useEffect } from 'react'; 
 import { 
   format, 
   startOfMonth, 

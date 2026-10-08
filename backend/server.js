@@ -1,3 +1,4 @@
+//Backendi on tehty AI:lla koska siitä itsellä ei ollut niin paljon tietoa
 import express from 'express';
 import cors from 'cors';
 import fs from 'fs/promises';

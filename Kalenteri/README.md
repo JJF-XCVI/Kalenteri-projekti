@@ -1,3 +1,49 @@
+# Kalenterisovellus
+
+## Mikä sovellus on ja kenelle
+
+Sovellus on tarkoitettu auttamaan merkitsemään päiviä ja muistuttamaan tapahtumista.
+
+## Asennus ja käynnistys
+
+Kloonaa repositorio ja asenna tarvittavat riippuvuudet.
+https://github.com/JJF-XCVI/Kalenteri-projekti.git
+
+### Frontend
+
+```bash
+cd Kalenteri-projekti
+cd Kalenteri
+npm install
+npm run dev
+```
+
+### Backend
+
+Avaa toinen terminaali ja suorita:
+
+```bash
+cd Kalenteri-projekti
+cd backend
+npm install
+node server.js
+```
+
+Frontend ja backend käynnistetään siis omissa terminaaleissaan.
+
+## Toteutetut ominaisuudet
+
+* kuukausien selaaminen
+* tietyn päivän valitseminen
+* valitun päivän tapahtumien näyttäminen
+* lista-näkymä
+* tapahtumien lisääminen
+* tapahtumien poistaminen
+* tapahtumalle kategorian määrittäminen
+* tapahtumien hakeminen backendistä
+* tapahtumien lisääminen backendin kautta
+* tapahtumien poistaminen backendin kautta
+
 ## Projektin dokumentointi
 
 Dokumentointi jäi projektin aikana hieman puutteelliseksi, koska keskityin paljon koodin kommentointiin ja unohdin dokumentoida projektin etenemistä samalla kun kirjoitin koodia. Tässä käyn kuitenkin läpi projektin tärkeimmät vaiheet ja vastaan tulleet ongelmat.
@@ -6,7 +52,7 @@ Dokumentointi jäi projektin aikana hieman puutteelliseksi, koska keskityin palj
 
 Aloitin kalenterisovelluksen tekemisen App.jsx-tiedostosta, jonka tarkoituksena on toimia sovelluksen pääsivuna ja tuoda Kalenteri-komponentti selaimeen.
 
-Tämän jälkeen loin Kalenteri.jsx-tiedoston, jossa aloin rakentaa kalenterin rakennetta ja toiminnallisuuksia. Samalla loin events.json -tiedoston alustavia tapahtumia varten sekä CSS-tyylit kalenterin ulkoasua varten.
+Tämän jälkeen loin Kalenteri.jsx-tiedoston, jossa aloin rakentaa kalenterin rakennetta ja toiminnallisuuksia. Samalla loin events.json-tiedoston alustavia tapahtumia varten sekä CSS-tyylit kalenterin ulkoasua varten.
 
 ### 2. date-fns-kirjaston käyttöönotto
 
@@ -54,22 +100,64 @@ Tapahtuman nimi tarkistetaan ennen tallentamista. Jos nimi puuttuu, käyttäjäl
 
 Lista-näkymässä tapahtumia voi myös poistaa **Poista**-painikkeella.
 
-### 8. Lisäykset että saan backendin ja frontendin toimimaan keskenään
+### 8. Backendin ja frontendin yhdistäminen
 
-Lisätty Kalenteri.jsx:ssään GET POST DELETE ja
+Projektin loppuvaiheessa yhdistin backendin ja frontendin toimimaan yhdessä.
+
+Lisäsin Kalenteri.jsx-tiedostoon GET-, POST- ja DELETE-pyynnöt, joiden avulla frontend hakee tapahtumia backendistä sekä lisää ja poistaa tapahtumia.
 
 ### 9. Lopputulos
 
 Lopputuloksena syntyi Reactilla toteutettu kalenterisovellus, jossa käyttäjä voi:
 
-selata eri kuukausia
-valita tietyn päivän
-nähdä valitun päivän tapahtumat
-tarkastella tapahtumia lista-näkymässä
-lisätä uusia tapahtumia
-poistaa tapahtumia
-määrittää tapahtumalle kategorian
+* selata eri kuukausia
+* valita tietyn päivän
+* nähdä valitun päivän tapahtumat
+* tarkastella tapahtumia lista-näkymässä
+* lisätä uusia tapahtumia
+* poistaa tapahtumia
+* määrittää tapahtumalle kategorian
 
 Projektin aikana opin erityisesti Reactin tilanhallintaa, komponenttien rakentamista, päivämäärien käsittelyä date-fns-kirjastolla sekä eri näkymien hallintaa.
 
 Backendin kautta sain myös kokemusta API-reiteistä, CRUD-toiminnoista ja CORS-asetuksista. Backendissä tarvitsin enemmän tekoälyn tukea, koska nämä asiat olivat itselleni vähemmän tuttuja kuin React-puoli.
+
+## Työnjako
+
+Projekti on tehty yksin.
+
+## Tekoälyn käyttö tässä projektissa
+
+Käytin projektissa tekoälyä erityisesti backendin toteutuksessa, koska backend-kehitys oli itselleni vähemmän tuttua.
+
+Tekoäly auttoi esimerkiksi backendin rakenteen, API-reittien, CRUD-toimintojen ja CORS-asetusten kanssa. Lisäksi käytin tekoälyä joidenkin ongelmien selvittämiseen.
+
+Tekoälyn antamia ratkaisuja tarkistin ja muokkasin itse projektin tarpeisiin. Vastasin itse lopullisesta toteutuksesta ja testasin sovelluksen toimivuuden.
+
+En syöttänyt tekoälylle salasanoja, API-avaimia tai muuta arkaluonteista tietoa.
+
+## Kuvakaappaukset
+
+### Kalenterinäkymä
+
+![Kalenterinäkymä](./screenshots/kalenteri.png)
+
+### Lista-näkymä
+
+![Lista-näkymä](./screenshots/lista.png)
+
+### Tapahtuman lisääminen
+
+![Tapahtuman lisääminen](./screenshots/lisaa-tapahtuma.png)
+
+## Jatkokehitys
+
+Sovellukseen olisi voinut lisätä vielä tarkemman päivä- ja tuntinäkymän. Päivää klikkaamalla voisi avautua näkymä, jossa päivän tapahtumat näkyvät tarkemmin eri kellonaikoina.
+
+Lisäksi sovellukseen voisi myöhemmin lisätä esimerkiksi:
+
+* tapahtumien muokkaamisen
+* tapahtumille kellonajan ja keston
+* toistuvat tapahtumat
+* tapahtumien suodattamisen kategorian mukaan
+* paremman mobiilinäkymän
