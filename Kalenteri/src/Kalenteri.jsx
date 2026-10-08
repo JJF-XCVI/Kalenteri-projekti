@@ -95,7 +95,7 @@ export default function KalenteriSovellus() {
     };
 
 
-    // LÄHETETÄÄN TAPAHTUMA BACKENDILLE POST-PYYNNÖLLÄ
+    // Lähetetään tapahtuma backendille post-pyynnöllä
 
     fetch(API_URL, {
       method: 'POST',
@@ -127,7 +127,7 @@ export default function KalenteriSovellus() {
   };
 
 
-  // TAPAHTUMAN POISTAMINEN
+  // Tapahtuman poistaminen
 
   // Saa parametrina poistettavan tapahtuman id:n.
   const handleDeleteEvent = (id) => {
@@ -149,7 +149,7 @@ export default function KalenteriSovellus() {
   };
 
 
-  // KALENTERINÄKYMÄ
+  // Kalenterinäkymä
 
   const renderCalendarView = () => {
 
@@ -343,7 +343,7 @@ days.push(
   };
 
 
-  // LISTANÄKYMÄ
+  // Listanäkymä
 
   const renderListView = () => {
     return (
@@ -401,7 +401,7 @@ days.push(
   };
 
 
-  // UUDEN TAPAHTUMAN LOMAKE
+  // Uusi tapahtuma lomake
 
   const renderFormView = () => {
     return (
@@ -501,7 +501,7 @@ days.push(
   };
 
 
-  // PÄÄNÄKYMÄ
+  // Päänäkymä
 
   return (
     <div className="app-container">

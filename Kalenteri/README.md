@@ -173,9 +173,7 @@ Projekti on tehty yksin.
 
 Hyödynsin projektissa tekoälyä erityisesti backendin tekemisessä, koska backend-kehitys oli itselleni vähemmän tuttua. Tekoäly auttoi esimerkiksi backendin rakenteen, API-reittien, CRUD-toimintojen ja CORS-asetusten kanssa.
 
-Käytin tekoälyä myös ongelmien selvittämiseen ja koodin toiminnan ymmärtämiseen. Tarkistin ja muokkasin tekoälyn antamia ehdotuksia itse, ja vastasin lopullisesta toteutuksesta ja testauksesta.
-
-En syöttänyt tekoälylle salasanoja, API-avaimia tai muuta arkaluontoista tietoa.
+Käytin tekoälyä myös ongelmien selvittämiseen ja koodin toiminnan ymmärtämiseen. Tarkistin ja muokkasin tekoälyn antamia ehdotuksia itse, ja vastasin lopullisesta toteutuksesta ja testauksesta 
 
 ## Kuvakaappaukset
 
