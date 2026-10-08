@@ -23,6 +23,10 @@ git clone https://github.com/JJF-XCVI/Kalenteri-projekti.git
 ### Frontend
 
 Siirry Kalenteri-kansioon:
+```bash
+cd Kalenteri-projekti
+```
+
 
 ```bash
 cd Kalenteri
@@ -43,6 +47,10 @@ npm run dev
 ### Backend
 
 Avaa toinen terminaali ja siirry backend-kansioon:
+```bash
+cd Kalenteri-projekti
+```
+
 
 ```bash
 cd backend
