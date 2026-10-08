@@ -457,7 +457,7 @@ days.push(
           {/* Tapahtuman päivämäärä */}
           <div className="form-group">
             <label>Päivämäärä</label>
-
+            {/*input date luo kalenterin automaattisesti ilman että joudut itse tekemään sitä */}
             <input 
               type="date" 
               value={formDate} 
