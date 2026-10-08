@@ -11,8 +11,6 @@ https://github.com/JJF-XCVI/Kalenteri-projekti.git
 
 # Kalenterisovellus
 
-**Repositorion linkki:** LISÄÄ TÄHÄN GITHUB-REPOSITORION LINKKI
-
 ## Mikä sovellus on ja kenelle
 
 Sovellus on tarkoitettu auttamaan merkitsemään päiviä ja muistuttamaan tapahtumista.
@@ -20,6 +18,7 @@ Sovellus on tarkoitettu auttamaan merkitsemään päiviä ja muistuttamaan tapah
 ## Asennus ja käynnistys
 
 Kloonaa repositorio ja siirry projektin kansioon.
+git clone https://github.com/JJF-XCVI/Kalenteri-projekti.git
 
 ### Frontend
 
